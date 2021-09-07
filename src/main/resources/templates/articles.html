@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th        = "http://thymeleaf.org"
 	  xmlns:layout    = "http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate = "mylayout">
+	  layout:decorate = "mylayout"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
 
 <head>
 <meta charset="utf-8">
@@ -32,11 +33,11 @@
 							<td th:text="${a.description}"> </td>
 							<td th:text="${a.price}"> </td>
 							<td>								  									<!-- après une suppression, pour garder le même contexte ou page --> 	
-								<a class="btn btn-danger" onclick="return confirm('Are you sure ?')" th:href="@{ /delete (id=${a.id} , page=${currentPage} , keyword=${keyword}) }" >Delete</a> 
+								<a class="btn btn-danger" sec:authorize="hasRole('ROLE_ADMIN')" onclick="return confirm('Are you sure ?')" th:href="@{ /delete (id=${a.id} , page=${currentPage} , keyword=${keyword}) }" >Delete</a> 
 							</td>
 							
 							<td>								  									 	
-								<a class="btn btn-info" th:href="@{ /edit (id=${a.id}) }" >Edit</a> 
+								<a class="btn btn-info" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{ /edit (id=${a.id}) }" >Edit</a> 
 							</td>							
 						</tr>	
 					</table>
