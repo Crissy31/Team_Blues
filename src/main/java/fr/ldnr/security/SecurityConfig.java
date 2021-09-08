@@ -51,11 +51,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.formLogin().loginPage("/login");	//indique à Spring que nous fournissons notre page d'authentification
-		//http.formLogin();	//indique à Spring de gérer l'authentification
+		
 	
 		//attribution des accès aux pages en fonction des rôles
 		http.authorizeRequests().antMatchers("/index","/save","/delete","/edit","/article").hasRole("ADMIN");
 		http.authorizeRequests().antMatchers("/index").hasRole("USER");
+		http.authorizeRequests().antMatchers("/index").permitAll();
+		
+		//http.formLogin();	//indique à Spring de gérer l'authentification
+		
 		
 		http.exceptionHandling().accessDeniedPage("/403");	//au cas ou un utilisateur tente d'accéder à une page non authorisée
 	}
