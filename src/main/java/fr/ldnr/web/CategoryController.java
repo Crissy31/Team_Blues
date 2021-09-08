@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import fr.ldnr.dao.ArticleRepository;
 import fr.ldnr.dao.CategoryRepository;
 import fr.ldnr.entities.Article;
+import fr.ldnr.entities.Category;
 
 @Controller
 public class CategoryController {
@@ -27,6 +28,13 @@ public class CategoryController {
 	@GetMapping("articlesByCategory")
 	public String articlesByCategory(Long id, Model model, @RequestParam(name="page" , defaultValue = "0") int page, 
 			 @RequestParam(name="keyword" , defaultValue = "") String kw) {
+		
+		// Début modif
+		
+		List<Category> categories = categoryRepository.findAll();
+		model.addAttribute("listCategories",categories);
+		
+		// Fin modif
 		
 		Collection<Article> articles = articleRepository.findByCategory_id(id);
 		model.addAttribute("listArticle",articles);	
