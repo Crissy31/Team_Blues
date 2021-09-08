@@ -38,11 +38,7 @@
 	<div class="bandeau">
 		<div class="container-fluid">
 			<div class="navbar-header" th:each="a:${listCategories}">
-<<<<<<< HEAD
-				<a class="btn btn-default" th:text="${a.name}" th:href="@{/articlesByCategory (id=${a.id})}"></a> &nbsp;
-=======
 				<a class="btn btn-default" th:text="${a.name}" th:href="@{/articlesByCategory}"></a> &nbsp;
->>>>>>> cef681f384092eb04acb27e578c273b9ca9baadf
 			</div>
 		</div>
 	</div>
