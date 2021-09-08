@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,19 +24,24 @@ import fr.ldnr.entities.Category;
 
 @Controller
 public class ArticleController {
+	
 	@Autowired
 	ArticleRepository articleRepository;
+	
 	@Autowired
 	CategoryRepository categoryRepository;
 	
 	@GetMapping("/index")			 
 	public String index(Model model, @RequestParam(name="page" , defaultValue = "0") int page, 
 									 @RequestParam(name="keyword" , defaultValue = "") String kw) {	
+	
 		Page<Article> articles = articleRepository.findByDescriptionContains(kw , PageRequest.of(page, 5));	
 
 		model.addAttribute("listArticle",articles.getContent());	//pour récupérer sous forme de liste la page pointée		
+		
 		List<Category> categories = categoryRepository.findAll();
 		model.addAttribute("listCategories",categories);
+		
 		//pour afficher des liens de pagination permettant à l'utilisateur de passer d'une page à l'autre, il faut :
 		//- récupérer le nombre total de pages
 		//- l'injecter dans le model sous forme de tableau d'entier
@@ -52,7 +58,7 @@ public class ArticleController {
 		
 		return "articles";	
 	}
-	
+		
 	@GetMapping("/delete")		//on peut ne pas préciser le paramètre de la requete, il va rechercher les variables correspondantes
 	public String delete(Long id, int page, String keyword) {
 		articleRepository.deleteById(id);		
