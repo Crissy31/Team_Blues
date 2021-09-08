@@ -39,7 +39,7 @@
 		<div class="container-fluid">
 			<div class="navbar-header" th:each="a:${listCategories}">
 
-				<a class="btn btn-default" th:text="${a.name}" th:href="@{/articlesByCategory}"></a> &nbsp;
+				<a class="btn btn-default" th:text="${a.name}" th:href="@{/articlesByCategory (id=${a.id})}"></a> &nbsp;
 
 			</div>
 		</div>
