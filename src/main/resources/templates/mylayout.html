@@ -38,7 +38,7 @@
 	<div class="bandeau">
 		<div class="container-fluid">
 			<div class="navbar-header" th:each="a:${listCategories}">
-				<a class="btn btn-default" th:text="${a.name}"></a> &nbsp;
+				<a class="btn btn-default" th:text="${a.name}" th:href="@{/articlesByCategory}"></a> &nbsp;
 			</div>
 		</div>
 	</div>
