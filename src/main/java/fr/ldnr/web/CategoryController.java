@@ -28,18 +28,8 @@ public class CategoryController {
 	public String articlesByCategory(Long id, Model model, @RequestParam(name="page" , defaultValue = "0") int page, 
 			 @RequestParam(name="keyword" , defaultValue = "") String kw) {
 		
-		//Page<Article> articles = articleRepository.findByCategoryWhereDescriptionContains(id, kw , PageRequest.of(page, 5));	
-		//Page<Article> articles = articleRepository.ArticlesByCategory(id, kw,  PageRequest.of(page, 5));
-		
-		
-		
-		/*Page<Article> articles = categoryRepository.findByCategory_id(id);//,  PageRequest.of(page, 5));*/
-		///Collection<Article> articles = categoryRepository.findByCategory_id(id);
-		
 		Collection<Article> articles = articleRepository.findByCategory_id(id);
-		///		Page<Article> articles = categoryRepository.findByCategoryWhereDescriptionContains(categoryRepository.findById(id), kw, PageRequest.of(page, 5));
-		
-		model.addAttribute("listArticle",articles);//.getContent());	//pour récupérer sous forme de liste la page pointée		
+		model.addAttribute("listArticle",articles);	
 		
 		return "articles";
 	}
