@@ -35,7 +35,8 @@ public class Article implements Serializable {
 	@ManyToOne
 	private Category category; // plusieurs articles sont liés à une seule categorie
 
-	
+	@ManyToOne
+	private Commande commande; // plusieurs articles sont liés à une seule commande
 	
 	public Article(Long id, String description, double price, Category category) {
 		this.id = id;

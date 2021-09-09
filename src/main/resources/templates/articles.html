@@ -33,7 +33,7 @@
 							<td th:text="${a.description}"> </td>
 							<td th:text="${a.price}"> </td>
 							<td>
-								<a class="btn btn-success">Ajout Panier</a>
+								<a class="btn btn-success" th:href="@{/caddy}">Ajout Panier</a>
 							</td>
 							<td>								  									<!-- après une suppression, pour garder le même contexte ou page --> 	
 								<a class="btn btn-danger" sec:authorize="hasRole('ROLE_ADMIN')" onclick="return confirm('Are you sure ?')" th:href="@{ /delete (id=${a.id} , page=${currentPage} , keyword=${keyword}) }" >Delete</a> 

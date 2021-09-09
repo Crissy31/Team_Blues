@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="mylayout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
+<head>
+<meta charset="utf-8">
+<title>Caddy</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="col-md-4 col-xs-8">
+			<div class="panel panel-primary">
+				<div class="panel-heading">Valider votre caddy</div>	
+				<div class="panel-body">
+				
+				
+					<table class = "table">
+						<tr>
+							<th>Id</th> <th>Description</th> <th>Price</th> 
+						</tr>
+						<tr th:each="a:${listArticle}">
+							<td th:text="${a.id}"> </td>
+							<td th:text="${a.description}"> </td>
+							<td th:text="${a.price}"> </td>
+							<td>
+								<a class="btn btn-success" th:href="@{/caddy}">Ajout Panier</a>
+							</td>
+							<td>								  									<!-- après une suppression, pour garder le même contexte ou page --> 	
+								<a class="btn btn-danger" sec:authorize="hasRole('ROLE_ADMIN')" onclick="return confirm('Are you sure ?')" th:href="@{ /deleteArticleCommande (id=${a.id} , page=${currentPage} , keyword=${keyword}) }" >Delete commande</a> 
+							</td>
+							
+							<td>								  									 	
+								<a class="btn btn-info" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{ /edit (id=${a.id}) }" >Quantité</a> 
+							</td>							
+						</tr>	
+					</table>
+					<form th:action="@{/caddy}" method="post">					
+							<button type="submit" class="btn btn-primary">Valider commande</button>				
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div layout:fragment="content">
+		<div class="panel-body">
+			
+			<form th:action="@{/caddy}" method="post">
+				<h3>Commande</h3>
+				<button type="submit">Valider commande</button>
+			</form>
+		</div>
+	</div>
+</body>
+
+</html>
