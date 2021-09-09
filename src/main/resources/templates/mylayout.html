@@ -30,9 +30,12 @@
 			</ul>
 
 			<ul class="nav navbar-nav pull-right">
+
 				<li><a class="btn btn-default" th:href="@{/panier}">Panier</a></li>
-				<li><a class="btn btn-default" th:href="@{/login}">Login</a></li>
-				<li><a class="btn btn-default" th:href="@{/logout}">Logout</a></li>
+				
+				<li><a class="btn btn-default" th:href="@{/login}" sec:authorize="!isAuthenticated()">Login</a></li>
+				<li><a class="btn btn-default" th:href="@{/logout}" sec:authorize="isAuthenticated()">Logout</a></li>
+
 			</ul>
 
 		</div>
