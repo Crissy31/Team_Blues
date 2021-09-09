@@ -10,6 +10,7 @@ import fr.ldnr.entities.Commande;
 
   public interface CommandeRepository extends JpaRepository<Commande, Long> {
 
-	//public List<Article> lstPanier(Long category_Id);
-	  //public double montant(Collection<Article> articles);
+		  //public double montant(Collection<Article> articles);
+	
+	///  public List<Article> findByCommande_id(Long commande_Id); // Commande_id = commande_id de la Table article en Base
 }

@@ -18,40 +18,30 @@
 				
 					<table class = "table">
 						<tr>
-							<th>Id</th> <th>Description</th> <th>Price</th> 
+							<th sec:authorize="hasRole('ROLE_ADMIN')">Id</th> <th>Description</th> <th>Price</th> 
 						</tr>
-						<tr th:each="a:${listArticle}">
-							<td th:text="${a.id}"> </td>
+						<tr th:each="a:${listArticlesCommande}">
+							<td sec:authorize="hasRole('ROLE_ADMIN')" th:text="${a.id}"> </td>
 							<td th:text="${a.description}"> </td>
 							<td th:text="${a.price}"> </td>
-							<td>
-								<a class="btn btn-success" th:href="@{/caddy}">Ajout Panier</a>
-							</td>
+							
 							<td>								  									<!-- après une suppression, pour garder le même contexte ou page --> 	
-								<a class="btn btn-danger" sec:authorize="hasRole('ROLE_ADMIN')" onclick="return confirm('Are you sure ?')" th:href="@{ /deleteArticleCommande (id=${a.id} , page=${currentPage} , keyword=${keyword}) }" >Delete commande</a> 
+								<a class="btn btn-danger" onclick="return confirm('Are you sure ?')" th:href="@{ /deleteArticleCommande (id=${a.id})}" >Delete</a> 
 							</td>
 							
 							<td>								  									 	
-								<a class="btn btn-info" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{ /edit (id=${a.id}) }" >Quantité</a> 
+								<a class="btn btn-info" th:href="@{ /quantité (id=${a.id}) }" >Quantité</a> 
 							</td>							
 						</tr>	
 					</table>
-					<form th:action="@{/caddy}" method="post">					
+					<form th:action="@{/verifLogin}" method="post">					
 							<button type="submit" class="btn btn-primary">Valider commande</button>				
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div layout:fragment="content">
-		<div class="panel-body">
-			
-			<form th:action="@{/caddy}" method="post">
-				<h3>Commande</h3>
-				<button type="submit">Valider commande</button>
-			</form>
-		</div>
-	</div>
+	
 </body>
 
 </html>

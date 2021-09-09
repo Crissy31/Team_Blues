@@ -14,4 +14,6 @@ import fr.ldnr.entities.Category;
 public interface ArticleRepository extends JpaRepository<Article, Long> {
 	Page<Article>	findByDescriptionContains(String description , Pageable pageable);
 	public List<Article> findByCategory_id(Long category_Id); // Category_id = category_id de la Table article en Base
+
+	public List<Article> findByCommande_id(Long commande_Id);
 }
