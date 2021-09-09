@@ -22,11 +22,15 @@
 
 			<ul class="nav navbar-nav">
 				<li><a th:href="@{/index}">Accueil</a></li>
-				<li><a th:href="@{/article}"  sec:authorize="hasRole('ROLE_ADMIN')" >Article</a></li>
-				<li><a th:href="@{/categorie}" sec:authorize="hasRole('ROLE_ADMIN')" >Catégorie</a></li>
+				<li><a th:href="@{/article}"  sec:authorize="hasRole('ROLE_ADMIN')" >Créer Article</a></li>
+				
+				<li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/category}">Gérer Catégories</a></li>
+				<li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/creerCategory}">Créer Catégorie</a></li>
+				
 			</ul>
 
 			<ul class="nav navbar-nav pull-right">
+				<li><a class="btn btn-default" th:href="@{/panier}">Panier</a></li>
 				<li><a class="btn btn-default" th:href="@{/login}">Login</a></li>
 				<li><a class="btn btn-default" th:href="@{/logout}">Logout</a></li>
 			</ul>
