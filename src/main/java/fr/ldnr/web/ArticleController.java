@@ -69,6 +69,10 @@ public class ArticleController {
 	public String edit(Long id, Model model) {
 		Article article = articleRepository.getById(id);
 		model.addAttribute("article", article);
+		
+		List<Category> categories = categoryRepository.findAll();
+		model.addAttribute("listCategory",categories);
+		
 		return "edit";
 	}
 	
