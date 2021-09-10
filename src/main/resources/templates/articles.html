@@ -26,10 +26,10 @@
 				<div class="panel-body">
 					<table class = "table">
 						<tr>
-							<th>Id</th> <th>Description</th> <th>Price</th> 
+							<th sec:authorize="hasRole('ROLE_ADMIN')">Id</th> <th>Description</th> <th>Price</th> 
 						</tr>
 						<tr th:each="a:${listArticle}">
-							<td th:text="${a.id}"> </td>
+							<td sec:authorize="hasRole('ROLE_ADMIN')" th:text="${a.id}"> </td>
 							<td th:text="${a.description}"> </td>
 							<td th:text="${a.price}"> </td>
 							<td>
